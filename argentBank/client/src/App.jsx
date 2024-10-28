@@ -1,8 +1,6 @@
-// import { useState } from 'react';
-// import './App.css'
 
 function App() {
-  // const [count, setCount] = useState(0)
+
 
   return (
     <>
@@ -10,7 +8,7 @@ function App() {
         <a className="main-nav-logo" href="./index.html">
           <img
             className="main-nav-logo-image"
-            src="./img/argentBankLogo.png"
+            src="./images/argentBankLogo.png"
             alt="Argent Bank Logo"
           />
           <h1 className="sr-only">Argent Bank</h1>
@@ -23,7 +21,7 @@ function App() {
         </div>
       </nav>
       <main>
-        <div className="hero">
+        <div className="hero text-black">
           <section className="hero-content">
             <h2 className="sr-only">Promoted Content</h2>
             <p className="subtitle">No fees.</p>
@@ -36,7 +34,7 @@ function App() {
           <h2 className="sr-only">Features</h2>
           <div className="feature-item">
             <img
-              src="./img/icon-chat.png"
+              src="./images/icon-chat.png"
               alt="Chat Icon"
               className="feature-icon"
             />
@@ -48,7 +46,7 @@ function App() {
           </div>
           <div className="feature-item">
             <img
-              src="./img/icon-money.png"
+              src="./images/icon-money.png"
               alt="Chat Icon"
               className="feature-icon"
             />
@@ -59,7 +57,7 @@ function App() {
           </div>
           <div className="feature-item">
             <img
-              src="./img/icon-security.png"
+              src="./images/icon-security.png"
               alt="Chat Icon"
               className="feature-icon"
             />
