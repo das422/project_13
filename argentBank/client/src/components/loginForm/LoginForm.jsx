@@ -1,21 +1,105 @@
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { loginAsync } from "../../store/slices/authSlices";
+import { getUserAsync } from "../../store/slices/userSlices";
+
 export default function LoginForm() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const {
+    error: messageError,
+    loading,
+    token,
+  } = useSelector((state) => state.login);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!email || !password) {
+      setError("Please fill in all fields");
+      return;
+    } else {
+      setError("");
+      try {
+        dispatch(loginAsync({ email, password }));
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (token) {
+      navigate("/profile");
+      dispatch(getUserAsync(token));
+    }
+  }, [token, navigate]);
   return (
     <>
-      <form className="flex flex-col items-center">
-        <div className="flex flex-col text-left mb-4 w-full">
-          <label htmlFor="username" className="font-bold">Username</label>
-          <input type="text" id="username" className="mt-1 p-2 border border-gray-300 rounded w-full" />
+      <form
+        onSubmit={(e) => handleSubmit(e)}
+        className="flex flex-col w-full max-w-sm"
+        noValidate
+      >
+        <div className="mb-4">
+          <label htmlFor="email" className="block font-bold mb-1">
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="username"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="p-2 border border-gray-300 rounded w-full"
+          />
         </div>
-        <div className="flex flex-col text-left mb-4 w-full">
-          <label htmlFor="password" className="font-bold">Password</label>
-          <input type="password" id="password" className="mt-1 p-2 border border-gray-300 rounded w-full" />
+        <div className="mb-4">
+          <label htmlFor="password" className="block font-bold mb-1">
+            Password
+          </label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="p-2 border border-gray-300 rounded w-full"
+          />
         </div>
         <div className="flex items-center mb-4">
-          <input type="checkbox" id="remember-me" className="mr-2" />
-          <label htmlFor="remember-me" className="font-bold">Remember me</label>
+          <input
+            type="checkbox"
+            id="remember"
+            name="remember"
+            className="mr-2"
+          />
+          <label htmlFor="remember" className="font-bold">
+            Remember me
+          </label>
         </div>
-
-        <button className="w-full py-2 bg-green-500 text-white font-bold rounded">Sign In</button>
+        <button
+          className="py-2 bg-green-500 text-white font-bold rounded"
+          type="submit"
+        >
+          {loading ? (
+            <div className="loader"></div> // Adjust loader styles as needed
+          ) : (
+            "Sign in"
+          )}
+        </button>
+        {error ? (
+          <div className="text-red-500 mt-2">{error}</div>
+        ) : (
+          messageError && (
+            <div className="text-red-500 mt-2">{messageError}</div>
+          )
+        )}
       </form>
     </>
   );

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import NavLinks from "./NavLinks/NavLinks";
 export default function Header() {
   return (
     <header>
@@ -11,15 +12,12 @@ export default function Header() {
           />
           <h1 className="sr-only">Argent Bank</h1>
         </Link>
-        <div>
-          <Link
-            className="mr-2 text-decoration-none hover:text-active-green"
-            to="/login"
-          >
-            {/* <UserCircleIcon /> */}
-            Sign In
-          </Link>
-        </div>
+        <ul>
+
+
+            <NavLinks />
+
+        </ul>
       </nav>
     </header>
   );
