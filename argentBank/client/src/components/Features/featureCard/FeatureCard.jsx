@@ -30,7 +30,7 @@ export default function FeatureCard() {
           <img
             src={feature.imgSrc}
             alt={feature.title}
-            className="w-16 h-16 border-4 border-green-500 rounded-full p-4"
+            className="w-24 h-24 border-8 border-green-500 rounded-full p-4 "
           />
           <h3 className="text-lg font-semibold mt-4">{feature.title}</h3>
           <p className="text-gray-600 text-center my-2">{feature.description}</p>

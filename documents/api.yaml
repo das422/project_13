@@ -294,6 +294,13 @@ paths:
       summary: Get transaction details
       description: Get details of a specific transaction
       parameters:
+        - name: AccountId
+          in: path
+          description: ID of account
+          required: true
+          schema:
+            type: integer
+            format: int64
         - name: TransactionId
           in: path
           description: ID of transaction

@@ -34,7 +34,7 @@ main {
   width: 1px !important;
   white-space: nowrap !important; /* 3 */
 }
-/*
+
 .main-nav {
   display: flex;
   justify-content: space-between;
@@ -200,7 +200,7 @@ main {
 .input-wrapper input {
   padding: 5px;
   font-size: 1.2rem;
-} */
+}
 
 .footer {
   display: flex;

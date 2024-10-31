@@ -3,7 +3,7 @@ import NavLinks from "./NavLinks/NavLinks";
 export default function Header() {
   return (
     <header>
-      <nav className="flex flex-col justify-between items-center px-1 ">
+      <nav className="flex justify-between items-center px-1 ">
         <Link className="flex items-center font-bold text-argent-blue" to="/">
           <img
             className=" w-[300px]"

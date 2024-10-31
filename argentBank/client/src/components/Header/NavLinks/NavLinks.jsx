@@ -12,7 +12,7 @@ const NavLinks = () => {
    return (
      <>
        {!token ? (
-         <li className="flex items-center ">
+         <li className="flex items-center">
            <NavLink to="/login" className="flex items-center gap-4">
              <CircleUserRound /> <span>Sign in</span>
            </NavLink>
@@ -30,7 +30,7 @@ const NavLinks = () => {
                onClick={() => dispatch(logout())}
                className="flex items-center gap-4"
              >
-               <LogOut /> <span>Sign Out</span>
+               <LogOut /> <span >Sign Out</span>
              </NavLink>
            </li>
          </>
