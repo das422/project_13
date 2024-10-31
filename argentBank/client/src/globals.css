@@ -8,15 +8,15 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-color: #12002b;
 }
 
 body {
 
+ margin:  0 auto;
   display: flex;
   flex-direction: column;
+  width: 100%;
   max-width: 1440px;
-  margin: 0 auto;
   min-height: 100vh;
 }
 

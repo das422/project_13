@@ -1,4 +1,4 @@
-api: 3.0.3
+openapi: 3.0.3
 info:
   title: Argent Bank API
   description: Contains all available API endpoints in this codebase
@@ -87,7 +87,24 @@ components:
       properties:
         notes:
           type: string
-
+    Transaction:
+          type: object
+          properties:
+            id:
+              type: integer
+            date:
+              type: string
+              format: date
+            description:
+              type: string
+            amount:
+              type: number
+            balance:
+              type: number
+            category:
+              type: string
+            notes:
+              type: string
 servers:
   - url: http://localhost:3001/api/v1
 
@@ -204,7 +221,7 @@ paths:
           description: Internal Server Error.
 
 ########### ACCOUNT ###########
-  /user/accounts/:
+  /user/accounts:
     get:
       tags:
         - Account
@@ -223,7 +240,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Account'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Account'
         '401':
           description: JWT expired or invalid.
         '500':
@@ -253,6 +272,12 @@ paths:
       responses:
         '200':
           description: An object array representing each transaction.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
         '400':
           description: Bad request. Account ID must be an integer.
         '401':
@@ -262,15 +287,50 @@ paths:
         '500':
           description: Internal Server Error.
 
+  /user/accounts/{AccountId}/transactions/{TransactionId}:
+    get:
+      tags:
+        - Transaction
+      summary: Get transaction details
+      description: Get details of a specific transaction
+      parameters:
+        - name: TransactionId
+          in: path
+          description: ID of transaction
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: Authorization
+          in: header
+          description: Attach Bearer JWT token
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Transaction details retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '400':
+          description: Bad request. Transaction ID must be an integer.
+        '401':
+          description: JWT expired or invalid.
+        '404':
+          description: Transaction with the specified ID was not found.
+        '500':
+          description: Internal Server Error.
 ########### CATEGORY ###########
-  /user/accounts/{AccountId}/transactions/{TransactionId}/category:
+  /user/transactions/{TransactionId}/category:
     patch:
       tags:
         - Transaction
       summary: Update transaction
       description: Update transaction's category
       requestBody:
-        description: Update user profile attributes
+        description: Update transaction category
         required: true
         content:
           application/json:
@@ -281,14 +341,7 @@ paths:
           in: path
           description: ID of transaction
           required: true
-          schema :
-            type: integer
-            format: int64
-        - name: AccountId
-          in: path
-          description: ID of account
-          required: true
-          schema :
+          schema:
             type: integer
             format: int64
         - name: Authorization
@@ -297,7 +350,6 @@ paths:
           required: true
           schema:
             type: string
-
       responses:
         '200':
           description: Transaction updated successfully.
@@ -311,14 +363,14 @@ paths:
           description: Internal Server Error.
 
 ########### NOTE ###########
-  /user/accounts/{AccountId}/transactions/{TransactionId}/note:
+  /user/transactions/{TransactionId}/note:
     patch:
       tags:
         - Note
       summary: Note
       description: Create Note
       requestBody:
-        description: Update user profile attributes
+        description: Update transaction note
         required: true
         content:
           application/json:
@@ -329,14 +381,7 @@ paths:
           in: path
           description: ID of transaction
           required: true
-          schema :
-            type: integer
-            format: int64
-        - name: AccountId
-          in: path
-          description: ID of account
-          required: true
-          schema :
+          schema:
             type: integer
             format: int64
         - name: Authorization

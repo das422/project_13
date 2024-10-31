@@ -18,7 +18,7 @@ npm install
 create .env file in the client folder and add the following:
 
 ```bash
-VITE_API_URL=http://localhost:3001/api/v1
+VITE_REACT_APP_BASE_URL=http://localhost:3001/api/v1
 ```
 
 ## UTILISATEURS:

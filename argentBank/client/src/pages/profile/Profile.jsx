@@ -12,7 +12,7 @@ export default function Profile() {
       setEditName(!editName);
     };
   return (
-    <div className="p-6 bg-gray-100">
+    <div className="p-6 bg-argent-dark">
       <header className="mb-4">
         {editName ? (
           <>
@@ -21,7 +21,7 @@ export default function Profile() {
           </>
         ) : (
           <>
-            <h1 className="text-2xl font-bold">
+            <h1 className="text-2xl font-bold text-white">
               Welcome back <br />
               <span className="text-lg">
                 {user.firstName} {user.lastName}!

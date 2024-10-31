@@ -23,14 +23,17 @@ export default function FeatureCard() {
   return (
     <>
       {featuresData.map((feature, index) => (
-        <div className="flex flex-col items-center p-10" key={index}>
+        <div
+          className="flex flex-col items-center justify-arround flex-1 m-5 p-4 gap-2 md:m-10"
+          key={index}
+        >
           <img
             src={feature.imgSrc}
             alt={feature.title}
-            className="w-16 h-16 border-4 border-green-500 rounded-full p-4" 
+            className="w-16 h-16 border-4 border-green-500 rounded-full p-4"
           />
           <h3 className="text-lg font-semibold mt-4">{feature.title}</h3>
-          <p className="text-gray-600">{feature.description}</p>
+          <p className="text-gray-600 text-center my-2">{feature.description}</p>
         </div>
       ))}
     </>

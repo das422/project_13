@@ -15,19 +15,26 @@ const accounts = [
 
 export default function Account() {
   return (
-    <>
+    <section className="flex flex-col items-center justify-center bg-argent-dark ">
       {accounts.map((account) => (
-        <section key={account.id} className="flex flex-col justify-between border border-black bg-white w-4/5 mx-auto p-6 box-border mb-8">
-          <div className="w-full flex-1">
-            <h3 className="text-base font-normal">{account.title} ({account.id})</h3>
-            <p className="text-5xl font-bold">{account.amount}</p>
+        <div
+          key={account.id}
+          className="flex flex-col md:flex-row justify-between border border-black bg-white w-4/5 mx-auto p-6 box-border mb-8"
+        >
+          <div className="w-full flex-1 md:text-left">
+            <h3 className="text-base font-normal">
+              {account.title} ({account.id})
+            </h3>
+            <p className="md:text-5xl text-3xl font-bold">{account.amount}</p>
             <p className="m-0">{account.description}</p>
           </div>
-          <div className="flex justify-center">
-            <button className="block w-full py-2 text-lg font-bold mt-4 border-2 border-green-500 bg-green-500 text-white">View transactions</button>
+          <div className="flex items-center">
+            <button className="block w-full px-4 m-2 text-lg font-bold  border-2 border-green-500 bg-green-500 text-white">
+              View transactions
+            </button>
           </div>
-        </section>
+        </div>
       ))}
-    </>
+    </section>
   );
 }

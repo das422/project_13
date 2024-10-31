@@ -32,7 +32,7 @@ return (
           <h3 className="text-base font-normal">
             argent bank {account.name}
           </h3>
-          <p className="text-5xl font-bold">{account.balance.toLocaleString("en")}</p>
+          <p className="font-bold text-3xl">{account.balance.toLocaleString("en")}</p>
           <p className="m-0">{account.type}</p>
         </div>
         <div className="flex justify-center">
